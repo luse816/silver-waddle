@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>心意选择</title>
+<style>
+body{
+    background:#fff0f3;
+    text-align:center;
+    padding-top:60px;
+    margin:0;
+    font-family:"微软雅黑",sans-serif;
+}
+.heart{width:180px;margin-bottom:40px;}
+.box{display:flex;justify-content:center;gap:40px;}
+.btn{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+}
+.like{background:#ff5a79;color:#fff;}
+.nolike{background:#999;color:#fff;}
+.page{display:none;}
+.page1{display:block;}
+p{font-size:16px;padding:0 20px;line-height:1.8;}
+.bigHeart{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#ff4d6d;
+    border:none;
+    font-size:30px;
+    color:#fff;
+    margin:30px 0;
+    cursor:pointer;
+}
+.exit{background:#666;color:#fff;}
+.inputBox{margin-top:30px;}
+input{
+    padding:10px;
+    width:60%;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+.send{
+    padding:10px 20px;
+    background:#ff5a79;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+}
+</style>
+</head>
+<body>
+
+<!-- 首页 -->
+<div class="page page1" id="p1">
+    <img class="heart" src="https://img.icons8.com/fluency/200/love-letter.png">
+    <div class="box">
+        <button class="btn like" onclick="changePage(2)">选择喜欢你</button>
+        <button class="btn nolike" onclick="changePage(4)">选择不喜欢你</button>
+    </div>
+</div>
+
+<!-- 喜欢页面 -->
+<div class="page" id="p2">
+    <p>虽然现在的不够优秀，但是我会努力变得更好，配得上你，如果你能接受不完美的我，陪我走下去，请按一下那个按钮。</p>
+    <button class="bigHeart" onclick="changePage(3);playM()">❤</button>
+    <br>
+    <button class="btn exit" onclick="window.close()">对不起，我做不到</button>
+</div>
+
+<!-- 告白页面 -->
+<div class="page" id="p3">
+    <p style="font-size:18px;color:#d6336c;">谢谢你坚定的选择了我，我喜欢你这件事，不是一时兴起的心动，是深思熟虑后的决定。<br/> <br/>我见过你开心的样子，也见过你难过的样子；见过你大大咧咧的样子，也见过你小心翼翼的样子。每一个样子，我都觉得特别珍贵。和你在一起的时候，我不用伪装，不用逞强，可以安心地做我自己。这种踏实的感觉，是任何人都给不了我的。<br/> <br/>我会为了你，慢慢变成一个更成熟、更可靠的人。未来的路还很长，我想牵着你的手一起走下去。</p>
+</div>
+
+<!-- 不喜欢页面 -->
+<div class="page" id="p4">
+    <p>没关系，认识你是我最大的缘分，和你相处的日子我非常开心，希望在未来的日子还能和你愉快的相处下去。</p>
+    <div class="inputBox">
+        <input type="text" id="txt" placeholder="输入想说的话">
+        <button class="send" onclick="copyMsg()">确定</button>
+    </div>
+</div>
+
+<!-- 修复：补全了闭合标签 -->
+<audio id="m" loop>
+<source src="gbqq.mp3">
+
+
+<script>
+function changePage(n){
+    document.querySelectorAll('.page').forEach(x=>x.style.display='none');
+    document.getElementById('p'+n).style.display='block';
+}
+function playM(){document.getElementById('m').play();}
+function copyMsg(){
+    let t = document.getElementById('txt').value;
+    if(!t){alert('请输入内容');return;}
+    navigator.clipboard.writeText(t);
+    alert('内容已复制，去微信粘贴发送吧');
+}
+</script>
+</body>
+</html>
